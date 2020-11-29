@@ -27,6 +27,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'udalov/kotlin-vim'
+Plug 'fatih/vim-go'
+Plug 'ycm-core/YouCompleteMe'
 
 call plug#end()
 """""""""""""""""""""""""""""
@@ -201,6 +203,13 @@ let g:cpp_concepts_highlight = 1
 " Java AutoImport Plugin
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
+" vim-go settings
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 """"""""""""""""""""""""""""""""
 " Custom bindings
 """"""""""""""""""""""""""""""""
@@ -217,7 +226,7 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 " Comment block
 vnoremap <silent> <C-k> :Commentary<cr>
 
-" Close current buffer
+" Close current window
 nnoremap <silent> <C-q> :Bclose<CR>
 
 " Toggle Nerdtree
@@ -226,12 +235,15 @@ noremap <silent> <C-f> :NERDTreeToggle<CR>
 " Select all
 map <C-a> <esc>ggVG<CR>
 
-" Toggle Goyo and Limelight mode
-noremap <silent> <C-g> :Goyo <CR>
-noremap <silent> <C-l> :Limelight!!<CR>
-
 " Toggle Transparent Background
 nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
 
 " Mapping ESC to qq   
 imap qq <Esc>
+
+" Mapping Enter & Backspace to new line & Erase
+nnoremap <CR> o<Esc>
+nnoremap <BS> X
+
+" Golang Keymappings
+map <F5> :GoRun<CR>
