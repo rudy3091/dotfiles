@@ -29,6 +29,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'udalov/kotlin-vim'
 Plug 'fatih/vim-go'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'Quramy/tsuquyomi'
 
 call plug#end()
 """""""""""""""""""""""""""""
@@ -210,6 +211,9 @@ let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" typescript
+let g:tsuquyomi_typescript_checkers = ['tsuquyomi']
+
 """"""""""""""""""""""""""""""""
 " Custom bindings
 """"""""""""""""""""""""""""""""
@@ -247,3 +251,8 @@ nnoremap <BS> X
 
 " Golang Keymappings
 map <F5> :GoRun<CR>
+
+" Typescript Keymappings
+autocmd FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
+autocmd FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSybolC)
+noremap <silent> <Leader>ti :TsuImport<CR>
