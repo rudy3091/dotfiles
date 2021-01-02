@@ -61,8 +61,6 @@ set lazyredraw
 set fileencodings=utf8
 
 " Theme
-" colo seoul256
-
 set background=dark
 set termguicolors
 colorscheme quantum
@@ -78,12 +76,6 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
-
-" Indent Guides
-let g:indentLine_enabled=1
-let g:indentLine_color_term=235
-let g:indentLine_char='|'
-let g:lexima_enable_newline_rules=1
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -125,50 +117,50 @@ endfunction
 
 " Close buffer properly with NERDtree
 function! s:Bclose(bang, buffer)
-if empty(a:buffer)
-let btarget = bufnr('%')
-elseif a:buffer =~ '^\d\+$'
-let btarget = bufnr(str2nr(a:buffer))
-else
-let btarget = bufnr(a:buffer)
-endif
-if btarget < 0
-call s:Warn('No Matching buffer for '.a:buffer)
-return
-endif
-if empty(a:bang) && getbufvar(btarget, '&modified')
-call s:Warn('No write since last change for buffer '.btarget.' (use :Bclose!)')
-return
-endif
-" Numbers of windows that view target buffer which we will delete.
-let wnums = filter(range(1, winnr('$')), 'winbufnr(v:val) == btarget')
-if !g:bclose_multiple && len(wnums) > 1
-call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
-return
-endif
-let wcurrent = winnr()
-for w in wnums
-execute w.'wincmd w'
-let prevbuf = bufnr('#')
-if prevbuf > 0 && buflisted(prevbuf) && prevbuf != w
-buffer #
-else
-bprevious
-endif
-if btarget == bufnr('%')
-let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val !=
-btarget')
-let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
-let bjump = (bhidden + blisted + [-1])[0]
-if bjump > 0
-execute 'buffer '.bjump
-else
-execute 'enew'.a:bang
-endif
-endif
-endfor
-execute 'bdelete'.a:bang.' '.btarget
-execute wcurrent.'wincmd w'
+	if empty(a:buffer)
+		let btarget = bufnr('%')
+	elseif a:buffer =~ '^\d\+$'
+		let btarget = bufnr(str2nr(a:buffer))
+	else
+		let btarget = bufnr(a:buffer)
+	endif
+	if btarget < 0
+		call s:Warn('No Matching buffer for '.a:buffer)
+	return
+	endif
+	if empty(a:bang) && getbufvar(btarget, '&modified')
+		call s:Warn('No write since last change for buffer '.btarget.' (use :Bclose!)')
+		return
+	endif
+	" Numbers of windows that view target buffer which we will delete.
+	let wnums = filter(range(1, winnr('$')), 'winbufnr(v:val) == btarget')
+	if !g:bclose_multiple && len(wnums) > 1
+		call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
+		return
+	endif
+	let wcurrent = winnr()
+	for w in wnums
+		execute w.'wincmd w'
+		let prevbuf = bufnr('#')
+		if prevbuf > 0 && buflisted(prevbuf) && prevbuf != w
+			buffer #
+		else
+			bprevious
+		endif
+		if btarget == bufnr('%')
+			let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val !=
+			btarget')
+			let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
+			let bjump = (bhidden + blisted + [-1])[0]
+			if bjump > 0
+				execute 'buffer '.bjump
+			else
+				execute 'enew'.a:bang
+			endif
+		endif
+	endfor
+	execute 'bdelete'.a:bang.' '.btarget
+	execute wcurrent.'wincmd w'
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<args>')
 nnoremap <silent> <Leader>bd :Bclose<CR>
@@ -241,6 +233,12 @@ map <C-a> <esc>ggVG<CR>
 
 " Toggle Transparent Background
 nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
+
+" Movement in i mode
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
 
 " Mapping ESC to qq   
 imap qq <Esc>
