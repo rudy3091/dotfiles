@@ -20,7 +20,7 @@ if [ ${matches} -ge 1 ]; then
 	if [ ${matches} -eq 1 ]; then
 		loc=$(cat ~/bookmarks | grep ${1})
 
-		echo "changing to ${loc}"
+		echo " 🚀 going to $loc"
 		cd $loc
 
 	else 
