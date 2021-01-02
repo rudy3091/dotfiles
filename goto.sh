@@ -14,6 +14,16 @@ check_bookmarked () {
 	echo $(cat ~/bookmarks | grep ${1} | wc -l)
 }
 
+if [ -z ${1} ]; then
+	echo "Usage: goto [TARGET]..."
+	return
+fi
+
+if [ -z $(find ~/bookmarks) ]; then
+	echo "\x1B[31mcreated bookmarks on home directory (~/bookmarks)\x1B[0m"
+	touch ~/bookmarks
+fi
+
 matches=$(check_bookmarked ${1})
 
 if [ ${matches} -ge 1 ]; then
