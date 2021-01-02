@@ -9,9 +9,13 @@ check_installed () {
 	fi
 }
 
-check_bookmarked () {
+result_rows () {
 	local bookmark=${1}
 	echo $(cat ~/bookmarks | grep ${1} | wc -l)
+}
+
+search_bookmarked () {
+	echo $(cat ~/bookmarks | grep ${1})
 }
 
 if [ -z ${1} ]; then
@@ -24,7 +28,7 @@ if [ -z $(find ~/bookmarks) ]; then
 	touch ~/bookmarks
 fi
 
-matches=$(check_bookmarked ${1})
+matches=$(result_rows ${1})
 
 if [ ${matches} -ge 1 ]; then
 	if [ ${matches} -eq 1 ]; then
@@ -36,13 +40,11 @@ if [ ${matches} -ge 1 ]; then
 	else 
 		echo "multiple results: "
 
-		idx=1
-		arr=("array")
+		idx=0
 		for item in $(search_bookmarked ${1});
 		do
-			echo "\x1B[31m[$idx]\x1B[0m: $item"
 			idx=$((idx+1))
-			arr+=($item)
+			echo "\x1B[31m[$idx]\x1B[0m: $item"
 		done
 		echo -n " \x1B[31m>\x1B[0m "
 
