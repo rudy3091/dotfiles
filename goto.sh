@@ -34,13 +34,22 @@ if [ ${matches} -ge 1 ]; then
 			idx=$((idx+1))
 			arr+=($item)
 		done
-		echo -n "\x1B[31m>\x1B[0m "
+		echo -n " \x1B[31m>\x1B[0m "
 
 		read target
 
-		loc=$(cat ~/bookmarks | grep -m$target ${1} | tail -n1)
-		echo " 🚀 going to $loc"
-		cd $loc
+		if [ -n $target ] && [ $target -eq $target ] 2>/dev/null; then
+			if [ $target -gt $idx ]; then
+				echo "invalid number"
+			else
+				loc=$(cat ~/bookmarks | grep -m$target ${1} | tail -n1)
+				echo " 🚀 going to $loc"
+				cd $loc
+			fi
+			
+		else
+			echo "invalid target"
+		fi
 		
 	fi
 
