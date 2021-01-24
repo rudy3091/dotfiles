@@ -109,13 +109,14 @@ export LIBGL_ALWAYS_INDIRECT=1
 # java env
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH="$PATH:$JAVA_HOME/bin"
+export PATH=/usr/share/swift/usr/bin:$PATH
 
 # custom alias && settings
 alias goto=". ~/goto.sh"
 alias emac="emacs -nw"
 
 alias kotlinc-jvm="/home/grayb/.sdkman/candidates/kotlin/current/bin/kotlinc-jvm"
-alias kotlinjar="kotlinc $1 -include-runtime -d Main.jar"
+alias kotlinauto="~/kotlinauto.sh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/grayb/.sdkman"
