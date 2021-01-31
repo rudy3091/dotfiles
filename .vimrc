@@ -206,6 +206,9 @@ let g:go_highlight_build_constraints = 1
 " typescript
 let g:tsuquyomi_typescript_checkers = ['tsuquyomi']
 
+" YCM
+let g:ycm_auto_hover=''
+
 """"""""""""""""""""""""""""""""
 " Custom bindings
 """"""""""""""""""""""""""""""""
