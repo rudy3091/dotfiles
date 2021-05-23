@@ -15,7 +15,6 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 Plug 'posva/vim-vue'
-Plug 'severin-lemaignan/vim-minimap'
 Plug 'djoshea/vim-autoread'
 Plug 'slim-template/vim-slim'
 Plug 'pangloss/vim-javascript'
@@ -28,8 +27,14 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'udalov/kotlin-vim'
 Plug 'fatih/vim-go'
-Plug 'ycm-core/YouCompleteMe'
 Plug 'Quramy/tsuquyomi'
+Plug 'prettier/vim-prettier', {
+			\ 'do': 'yarn install',
+			\ 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'eslint/eslint'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rescript-lang/vim-rescript'
 
 call plug#end()
 """""""""""""""""""""""""""""
@@ -87,21 +92,19 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 
-" Start Minimap
-" autocmd VimEnter * Minimap
-if v:version < 700 || exists('loaded_bclose') || &cp
-finish
-endif
-let loaded_bclose = 1
-if !exists('bclose_multiple')
-let bclose_multiple=1
-endif
+" Vue
+let g:vue_pre_processors = ['pug', 'scss']
 
 function! s:Warn(msg)
   echohl ErrorMsg
   echomsg a:msg
   echohl NONE
 endfunction
+
+" Coc
+let g:coc_global_extensions = [
+			\ 'coc-tsserver'
+			\ ]
 
 let t:is_transparent=0
 hi Normal guibg=NONE ctermbg=NONE
@@ -116,6 +119,7 @@ function! Toggle_transparent_background()
 endfunction
 
 " Close buffer properly with NERDtree
+let g:bclose_multiple=0
 function! s:Bclose(bang, buffer)
 	if empty(a:buffer)
 		let btarget = bufnr('%')
@@ -148,8 +152,7 @@ function! s:Bclose(bang, buffer)
 			bprevious
 		endif
 		if btarget == bufnr('%')
-			let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val !=
-			btarget')
+			let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val != btarget')
 			let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
 			let bjump = (bhidden + blisted + [-1])[0]
 			if bjump > 0
@@ -202,9 +205,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " typescript
-let g:tsuquyomi_typescript_checkers = ['tsuquyomi']
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " YCM
 let g:ycm_auto_hover=''
@@ -230,6 +235,7 @@ nnoremap <silent> <C-q> :Bclose<CR>
 
 " Toggle Nerdtree
 noremap <silent> <C-f> :NERDTreeToggle<CR>
+noremap <silent> <Leader>r :NERDTreeRefreshRoot<CR>
 
 " Select all
 map <C-a> <esc>ggVG<CR>
@@ -245,6 +251,8 @@ inoremap <C-l> <C-o>l
 
 " Mapping ESC to qq   
 imap qq <Esc>
+imap jk <Esc>
+imap kj <Esc>
 
 " Mapping Enter & Backspace to new line & Erase
 nnoremap <CR> o<Esc>
@@ -257,3 +265,10 @@ map <F5> :GoRun<CR>
 autocmd FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
 autocmd FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSybolC)
 noremap <silent> <Leader>ti :TsuImport<CR>
+
+" Prettier
+nnoremap <Leader>ff :Prettier<CR>
+
+" Rust
+nnoremap <Leader>rr :RustRun<CR>
+nnoremap <Leader>rf :RustFmt<CR>
