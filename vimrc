@@ -3,10 +3,7 @@
 """"""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'joshdick/onedark.vim'
-Plug 'Badacadabra/vim-archery'
 Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Townk/vim-autoclose'
@@ -24,7 +21,6 @@ Plug 'cohama/lexima.vim'
 Plug 'mattn/emmet-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'udalov/kotlin-vim'
 Plug 'fatih/vim-go'
 Plug 'Quramy/tsuquyomi'
@@ -35,6 +31,9 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'eslint/eslint'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rescript-lang/vim-rescript'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'alx741/vim-hindent'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 """""""""""""""""""""""""""""
@@ -211,8 +210,33 @@ let g:go_info_mode='gopls'
 " typescript
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
-" YCM
-let g:ycm_auto_hover=''
+" haskell
+filetype plugin indent on
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+let g:haskell_indent_if = 3
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_before_where = 2
+let g:haskell_indent_after_bare_where = 2
+let g:haskell_indent_do = 3
+let g:haskell_indent_in = 1
+let g:haskell_indent_guard = 2
+let g:haskell_indent_case_alternative = 1
+
+" tabs
+autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype typescript setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype typescriptreact setlocal expandtab tabstop=2 shiftwidth=2
+
+autocmd Filetype haskell setlocal expandtab tabstop=2 shiftwidth=2
 
 """"""""""""""""""""""""""""""""
 " Custom bindings
@@ -221,6 +245,9 @@ let g:ycm_auto_hover=''
 " Browse  tabs
 :nnoremap <C-p> :bnext<CR>
 :nnoremap <C-o> :bprevious<CR>
+
+nnoremap <tab> <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " Map Control S for save
 noremap <silent> <C-S> :update<CR>
@@ -231,7 +258,7 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 vnoremap <silent> <C-k> :Commentary<cr>
 
 " Close current window
-nnoremap <silent> <C-q> :Bclose<CR>
+nnoremap <silent> <C-q> :q<cr>
 
 " Toggle Nerdtree
 noremap <silent> <C-f> :NERDTreeToggle<CR>
@@ -249,7 +276,7 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
 
-" Mapping ESC to qq   
+" Mapping ESC
 imap qq <Esc>
 imap jk <Esc>
 imap kj <Esc>
