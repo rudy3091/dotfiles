@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Townk/vim-autoclose'
@@ -66,8 +66,8 @@ set fileencodings=utf8
 
 " Theme
 set background=dark
-set termguicolors
-colorscheme quantum
+" set termguicolors
+colorscheme dracula
 set guifont=DejaVu_Sans_Mono_for_Powerline:h12
 
 " Language
@@ -77,7 +77,7 @@ language messages en_US.UTF-8
 " Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='bubblegum'
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
 
