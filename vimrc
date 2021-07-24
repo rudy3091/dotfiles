@@ -34,6 +34,8 @@ Plug 'rescript-lang/vim-rescript'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
 Plug 'rust-lang/rust.vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 call plug#end()
 """""""""""""""""""""""""""""
@@ -43,6 +45,7 @@ set fileformat=unix
 set nocompatible
 set noswapfile
 set number
+set relativenumber
 
 set wildmenu
 set wildmode=list:longest
@@ -237,6 +240,8 @@ autocmd Filetype typescript setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype typescriptreact setlocal expandtab tabstop=2 shiftwidth=2
 
 autocmd Filetype haskell setlocal expandtab tabstop=2 shiftwidth=2
+
+autocmd Filetype dart setlocal expandtab tabstop=2 shiftwidth=2
 
 """"""""""""""""""""""""""""""""
 " Custom bindings
