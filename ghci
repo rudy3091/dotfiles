@@ -1,0 +1,2 @@
+:set prompt "%s\n\x1b[35m\x03BB>\x1b[0m "
+:set prompt-cont "\x1b[35m |\x1b[0m "
