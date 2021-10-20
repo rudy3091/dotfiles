@@ -1,0 +1,39 @@
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+
+  position:
+    x: 0
+    y: 0
+  decorations: buttonless
+
+  startup_mode: Maximized
+
+  padding:
+    x: 3
+    y: 5
+
+tabspaces: 2
+
+font:
+  normal:
+    # family: "MesloLGS NF"
+    family: "MesloLGS NF"
+  size: 13.0
+  use_thin_strokes: true
+
+colors:
+  primary:
+    background: "#141328"
+    foreground: "#f5e8f6"
+
+  normal:
+    black: "#4b5263"
+    red: "#ED4C67"
+    green: "#C4E538"
+    yellow: "#FFD362"
+    blue: "#61BFFF"
+    magenta: "#C678DD"
+    cyan: "#12CBC4"
+    white: "#f5e8f6"
