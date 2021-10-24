@@ -1,0 +1,54 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# displaying cusstom prompt
+PROMPT=$'%F{202}%B %~ \u03bb %f%b'
+
+export ZSH="/Users/rudy/.oh-my-zsh"
+
+# zsh plugins
+plugins=(
+	git
+	zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+export PATH="$PATH:$JAVA_HOME/bin"
+export PATH=/usr/share/swift/usr/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin/pip3:$PATH"
+
+# custom alias && settings
+source $(go-to init)
+# alias goto=". ~/goto.sh"
+
+alias ghc="$HOME/.ghcup/ghc/8.10.4/bin/ghc"
+alias ghci="$HOME/.ghcup/ghc/8.10.4/bin/ghci"
+
+alias ":q"="exit 0"
+alias lg="lazygit"
+
+# python package manager
+# python for mac
+alias pip="/usr/local/bin/pip3"
+alias python="/usr/local/bin/python3"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f "/Users/rudy/.ghcup/env" ] && source "/Users/rudy/.ghcup/env" # ghcup-env
+
+# opam configuration
+[[ ! -r /Users/rudy/.opam/opam-init/init.zsh ]] || source /Users/rudy/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
