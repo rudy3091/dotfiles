@@ -45,6 +45,7 @@ alias ghci="$HOME/.ghcup/ghc/8.10.4/bin/ghci"
 
 alias ":q"="exit 0"
 alias lg="lazygit"
+alias fzfcopy="$HOME/fzfcopy"
 
 # python package manager
 # python for mac
