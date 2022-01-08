@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# THIS SCRIPT REQUIRES fzf, pbcopy, pbpaste TO BE INSTALLED
+# YOU NEED fzf TO RUN THIS
 #
 # 1. add alias fzfcopy='PATH_TO_THIS_SCRIPT/fzfcopy'
 # to your .zshrc or .bashrc or any of your shell configuration file and restart
 # your shell
-# 2. goto target directory and type `echo $(pwd) | pbcopy`
-# 3. type fzfcopy and select files to copy (pressing tab by default)
-# 4. type enter
-# 5. selected files will be copied to target directory
-cp -r $(find . -d | fzf -m) $(pbpaste)
+# 2. type fzfcopy <target_dir> and select files to copy (pressing tab by default)
+# 3. type enter
+# 4. selected files will be copied to target directory
+cp -r $(find . -d | fzf -m) $@
