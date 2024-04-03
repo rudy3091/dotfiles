@@ -1,14 +1,11 @@
 window:
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 160
+    lines: 48
 
   position:
     x: 0
     y: 0
-  decorations: buttonless
-
-  startup_mode: Maximized
 
   padding:
     x: 3
@@ -17,11 +14,7 @@ window:
 tabspaces: 2
 
 font:
-  normal:
-    # family: "MesloLGS NF"
-    family: "MesloLGS NF"
   size: 13.0
-  use_thin_strokes: true
 
 colors:
   primary:
