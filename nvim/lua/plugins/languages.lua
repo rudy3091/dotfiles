@@ -13,7 +13,17 @@ return {
   -- Haskell language support
   "neovimhaskell/haskell-vim",
 
+  -- nodejs ecosystem
   'neovim/nvim-lspconfig',
   'jose-elias-alvarez/null-ls.nvim',
-  'MunifTanjim/prettier.nvim'
+  'MunifTanjim/prettier.nvim',
+  {
+    'mattn/emmet-vim',
+    init = function ()
+      vim.cmd("let g:user_emmet_mode='a'")
+      vim.cmd("let g:user_emmet_install_global = 0")
+      vim.cmd("let g:user_emmet_leader_key=','")
+      vim.cmd("autocmd FileType html,css,typescriptreact EmmetInstall")
+    end
+  },
 }

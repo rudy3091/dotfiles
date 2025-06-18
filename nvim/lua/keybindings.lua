@@ -23,3 +23,9 @@ vim.cmd("nnoremap <TAB> <C-w>w")
 
 -- 'ff' for Focus mode
 vim.cmd("nnoremap <silent> ff <Cmd>Goyo<CR><Cmd>Limelight!!<CR>")
+
+-- 'space + ff' for Prettier format
+vim.cmd('nnoremap <silent> <Leader>ff <Cmd>Prettier<CR>')
+
+-- 'space + df' for Telescope file finder
+vim.cmd('nnoremap <silent> <Leader>df <Cmd>Telescope find_files<CR>')
