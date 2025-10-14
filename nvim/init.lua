@@ -1,7 +1,7 @@
 require("config.lazy")
-require("statusline")
 require("keybindings")
 require("editor")
+require("statusline")
 
 -- local utils = require("utils")
 

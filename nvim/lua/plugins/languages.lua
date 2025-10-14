@@ -26,4 +26,10 @@ return {
       vim.cmd("autocmd FileType html,css,typescriptreact EmmetInstall")
     end
   },
+
+  -- Purescript
+  { "purescript-contrib/purescript-vim" },
+
+  -- golang
+  { "fatih/vim-go" },
 }

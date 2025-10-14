@@ -2,7 +2,7 @@ local M = {}
 
 local dark = "#111111"
 -- local primary = "#df6510"
-local primary = "#df65f0"
+local primary = "#bebebf00"
 local primary_input = "#df6510"
 local primary_visual = "#dff510"
 local secondary = "#af6510"
@@ -10,11 +10,11 @@ local white = "#e5e5e5"
 
 local hl_table = {
   BufferNum = { fg = dark, bg = white },
-  Filename = { fg = primary, bg = dark },
+  Filename = { fg = white, bg = dark },
   ModifySign = { fg = secondary, bg = dark },
   LineNum = { fg = primary, bg = dark },
   LineMaxNum = { fg = primary, bg = dark },
-  ColumnNum = { fg = secondary, bg = dark },
+  ColumnNum = { fg = primary, bg = dark },
 }
 
 local function set_hl(group, color)

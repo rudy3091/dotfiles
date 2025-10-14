@@ -44,3 +44,11 @@ vim.opt.scrolloff = 5
 
 vim.opt.wrap = false
 vim.opt.mouse = "a"
+
+-- Transparent background
+vim.cmd [[
+  highlight Normal guibg=none
+  highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
