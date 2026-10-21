@@ -26,6 +26,13 @@ return {
       vim.cmd("autocmd FileType html,css,typescriptreact,vue EmmetInstall")
     end
   },
+  {
+    'esmuellert/nvim-eslint',
+    config = function()
+      require('nvim-eslint').setup({})
+    end,
+  },
+  'lbrayner/vim-rzip',
 
   -- Purescript
   { "purescript-contrib/purescript-vim" },
@@ -42,14 +49,6 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
-  },
-
-  -- eslint
-  {
-    'esmuellert/nvim-eslint',
-    config = function()
-      require('nvim-eslint').setup({})
-    end,
   },
 
   { 'adimit/prolog.vim' },

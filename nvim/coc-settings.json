@@ -57,6 +57,11 @@
         "stdio"
       ],
       "filetypes": ["prolog"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
     }
   }
 }

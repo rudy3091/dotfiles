@@ -52,3 +52,38 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
+
+vim.cmd([[
+  " Color name (:help cterm-colors) or ANSI code
+  let g:limelight_conceal_ctermfg = 'gray'
+  let g:limelight_conceal_ctermfg = 240
+
+  " Color name (:help gui-colors) or RGB color
+  let g:limelight_conceal_guifg = 'DarkGray'
+  let g:limelight_conceal_guifg = '#777777'
+
+  " Default: 0.5
+  let g:limelight_default_coefficient = 0.7
+
+  " Highlighting priority (default: 10)
+  "   Set it to -1 not to overrule hlsearch
+  let g:limelight_priority = -1
+]])
+
+vim.cmd ([[
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+]])
+vim.api.nvim_create_autocmd("User", {
+  pattern = "GoyoEnter",
+  callback = function()
+    vim.cmd([[
+      highlight WinSeparator guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
+      highlight VertSplit    guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE
+      highlight NormalNC     guibg=NONE ctermbg=NONE
+      highlight Normal       guibg=NONE ctermbg=NONE
+      set fillchars+=vert:\ 
+    ]])
+  end,
+})
+vim.g.go_echo_command_info = 0

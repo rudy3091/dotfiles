@@ -14,6 +14,9 @@ vim.cmd("nnoremap <silent> <C-s> <Cmd>:w<CR>")
 vim.cmd("inoremap <silent> <C-s> <C-o><Cmd>:w<CR>")
 vim.cmd("vnoremap <silent> <C-s> <C-c><Cmd>:w<CR>")
 
+-- 'cmd + c' to copy to system clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- 'esc' aliases
 vim.cmd("imap jk <Esc>")
 vim.cmd("imap kj <Esc>")
